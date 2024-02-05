@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// https://github.com/NLnetLabs/unbound/blob/master/daemon/remote.c (do_stats: print_stats, print_thread_stats, print_mem, print_uptime, print_ext)
+// https://github.com/NLnetLabs/unbound/blob/master/src/daemon/remote.c (do_stats: print_stats, print_thread_stats, print_mem, print_uptime, print_ext)
 // https://github.com/NLnetLabs/unbound/blob/master/libunbound/unbound.h (structs: ub_server_stats, ub_shm_stat_info)
 // https://docs.datadoghq.com/integrations/unbound/#metrics (stats description)
 // https://docs.menandmice.com/display/MM/Unbound+request-list+demystified (request lists explanation)
@@ -81,7 +81,7 @@ func (u *Unbound) collectNonCumulativeStats(stats []entry) map[string]int64 {
 	mx := u.processStats(stats, mul)
 
 	// see 'static int print_ext(RES* ssl, struct ub_stats_info* s)' in
-	// https://github.com/NLnetLabs/unbound/blob/master/daemon/remote.c
+	// https://github.com/NLnetLabs/unbound/blob/master/src/daemon/remote.c
 	// - zero value queries type not included
 	// - zero value queries class not included
 	// - zero value queries opcode not included
